@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section>
+  <article>
+    <h1>Menu item</h1>
+    <span>
+      <a href="{% url 'home' %}">Home</a> / <a href="{% url 'menu' %}">Menu</a>/
+      <!-- Step: Replace code here -->
+    </span>
+    <!--Begin row-->
+    <div class="row">
+      <!--Begin col-->
+      <div class="column">
+        <h2>
+          <!-- Add DTL variable for menu_item_name -->
+          {{ object.name }}
+        </h2>
+        <p>
+          <!-- Add DTL variable for description -->
+          {{ object.menu_item_description }}
+        </p>
+        <p>
+          <!-- Add DTL variable for price -->
+          Price: ${{ object.price }}.00
+        </p>
+      </div>
+      <!--End col-->
+      <!--Begin col-->
+      <div class="column">
+        <img
+          src="{% with '/img/menu_items/'|add:object.name|add:'.jpg' as image_static %}
+                            {% static image_static %}
+                        {% endwith %}"
+          alt="{{ object.name}}"
+        />
+      </div>
+      <!--End col-->
+    </div>
+    <!--End row-->
+  </article>
+</section>
+{% endblock %}
